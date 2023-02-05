@@ -3,6 +3,8 @@ Finally!!!!!!
 
 Hands on tutorials
 
+Course Repo - https://github.com/rdi-berkeley/zkp-course-lecture3-code
+
 CIRCOM tutorial
 ------------------
 
@@ -67,5 +69,11 @@ snarkjs groth16 prove sudoku.pk sudoku.wtns sudoku.pf.json sudoku.inst.json
 snarkjs groth16 verify sudoku.vk sudoku.inst.json sudoku.pf.json
 [INFO]  snarkJS: OK!
 
+---------------------------------------------------------------------------------------------------------
+
+ARKWORKS tutorial
+------------------------
+
+Copied code from the course repo
 
 
