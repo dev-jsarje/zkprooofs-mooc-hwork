@@ -76,4 +76,156 @@ ARKWORKS tutorial
 
 Copied code from the course repo
 
+Install rustup - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Ran - cargo run
+
+Output - 
+
+Updating crates.io index
+  Downloaded ahash v0.8.3
+  Downloaded ark-serialize-derive v0.4.0
+  Downloaded ark-snark v0.4.0
+  Downloaded ark-ff v0.4.0
+  Downloaded hashbrown v0.13.2
+  Downloaded derivative v2.2.0
+  Downloaded itertools v0.10.5
+  Downloaded ark-std v0.4.0
+  Downloaded paste v1.0.11
+  Downloaded synstructure v0.12.6
+  Downloaded num-bigint v0.4.3
+  Downloaded rand_chacha v0.3.1
+  Downloaded tracing-attributes v0.1.23
+  Downloaded rustc_version v0.4.0
+  Downloaded rand_core v0.6.4
+  Downloaded tracing-subscriber v0.2.25
+  Downloaded zeroize_derive v1.3.3
+  Downloaded ark-ec v0.4.0
+  Downloaded ark-poly v0.4.0
+  Downloaded ark-serialize v0.4.0
+  Downloaded ark-relations v0.4.0
+  Downloaded ark-ff-macros v0.4.0
+  Downloaded ark-bls12-381 v0.4.0
+  Downloaded ark-ff-asm v0.4.0
+  Downloaded zeroize v1.5.7
+  Downloaded tracing-core v0.1.30
+  Downloaded rand v0.8.5
+  Downloaded tracing v0.1.37
+  Downloaded semver v1.0.16
+  Downloaded pin-project-lite v0.2.9
+  Downloaded ark-r1cs-std v0.4.0
+  Downloaded 31 crates (1.8 MB) in 1.57s
+   Compiling autocfg v1.1.0
+   Compiling proc-macro2 v1.0.51
+   Compiling unicode-ident v1.0.6
+   Compiling quote v1.0.23
+   Compiling syn v1.0.107
+   Compiling version_check v0.9.4
+   Compiling num-traits v0.2.15
+   Compiling typenum v1.16.0
+   Compiling generic-array v0.14.6
+   Compiling num-integer v0.1.45
+   Compiling rand_core v0.6.4
+   Compiling once_cell v1.17.0
+   Compiling ppv-lite86 v0.2.17
+   Compiling rand_chacha v0.3.1
+   Compiling num-bigint v0.4.3
+   Compiling unicode-xid v0.2.4
+   Compiling synstructure v0.12.6
+   Compiling crypto-common v0.1.6
+   Compiling rand v0.8.5
+   Compiling cfg-if v1.0.0
+   Compiling paste v1.0.11
+   Compiling ark-std v0.4.0
+   Compiling ark-serialize-derive v0.4.0
+   Compiling zeroize_derive v1.3.3
+   Compiling digest v0.10.6
+   Compiling either v1.8.1
+   Compiling itertools v0.10.5
+   Compiling ark-ff-macros v0.4.0
+   Compiling derivative v2.2.0
+   Compiling ark-serialize v0.4.0
+   Compiling ark-ff-asm v0.4.0
+   Compiling zeroize v1.5.7
+   Compiling ahash v0.8.3
+   Compiling tracing-core v0.1.30
+   Compiling tracing-attributes v0.1.23
+   Compiling hashbrown v0.13.2
+   Compiling pin-project-lite v0.2.9
+   Compiling tracing-subscriber v0.2.25
+   Compiling ark-ff v0.4.0
+   Compiling tracing v0.1.37
+   Compiling ark-poly v0.4.0
+   Compiling ark-relations v0.4.0
+   Compiling ark-snark v0.4.0
+   Compiling ark-ec v0.4.0
+   Compiling ark-bls12-381 v0.4.0
+   Compiling ark-r1cs-std v0.4.0
+   Compiling sudoku-snark v0.1.0 (/mnt/c/Users/Admin/zkproofs/arkworks)
+    Finished dev [unoptimized + debuginfo] target(s) in 2m 19s
+     Running `target/debug/sudoku-snark`
+Constraint trace requires enabling `ConstraintLayer`
+thread 'main' panicked at 'assertion failed: cs.is_satisfied().unwrap()', src/main.rs:58:5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+ZOKRATES tutorial
+
+Install Zokrates - curl -LSfs get.zokrat.es | sh
+
+Add to your PATH - export PATH=$PATH:/home/yourusername/.zokrates/bin
+
+Copy code from Course repo
+
+Compile the root.zok file by running - zokrates compile --input root.zok
+
+Output -
+
+Compiling root.zok
+
+Compiled code written to 'out'
+Number of constraints: 3179 
+
+Invoke the setup to generate a set of public parameters to test our code - zokrates setup
+
+Output - 
+
+Performing setup...
+Verification key written to 'verification.key'
+Proving key written to 'proving.key'
+Setup completed
+
+Compute the witnesses needed during proving by passing the puzzle and the solution via the command line:-
+
+zokrates compute-witness -a 1 0 0 2 1 2 1 2 (1 0 0 2 is the puzzle and 1 2 1 2 is the solution
+
+Output - 
+
+Computing witness...
+Witness file written to 'witness'
+
+Invoke generate proof which will take witness file and the proving key and spit out the zero knowledge proof - zkp - into the proof.json file:-
+
+zokrates generate-proof
+
+Output - 
+
+Generating proof...
+Proof written to 'proof.json'
+
+Verify the proof - zokrates verify
+
+Output - 
+
+Performing verification...
+PASSED
+
+Try inputting the wrong solution by running - zokrates compute-witness -a 1 0 0 2 1 2 1 5
+
+Output - 
+
+Computing witness...
+Execution failed: Assertion failed at root.zok:27:13
+
+
+
 
