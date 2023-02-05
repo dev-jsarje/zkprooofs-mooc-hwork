@@ -1,1 +1,71 @@
 
+Finally!!!!!!
+
+Hands on tutorials
+
+CIRCOM tutorial
+------------------
+
+Copied files from Lecture repo
+Edited sudoku.circom
+Ran - circom circom.sudoku
+Output - 
+template instances: 5
+Everything went okay, circom safe
+
+Then ran - make
+Error message - 
+circom sudoku.circom --r1cs --wasm
+make: zsh: Command not found
+make: *** [Makefile:21: sudoku_js/sudoku.wasm] Error 127
+
+Installed - sudo apt install zsh
+
+Ran make again 
+
+Output -
+
+circom sudoku.circom --r1cs --wasm
+template instances: 5
+non-linear constraints: 1053
+linear constraints: 0
+public inputs: 81
+public outputs: 0
+private inputs: 81
+private outputs: 0
+wires: 973
+labels: 2107
+Written successfully: ./sudoku.r1cs
+Written successfully: ./sudoku_js/sudoku.wasm
+Everything went okay, circom safe
+node sudoku_js/generate_witness.js sudoku_js/sudoku.wasm sudoku.input.json sudoku.wtns
+snarkjs powersoftau new bn128 12 tmp.ptau
+[INFO]  snarkJS: First Contribution Hash:
+                9e63a5f6 2b96538d aaed2372 481920d1
+                a40b9195 9ea38ef9 f5f6a303 3b886516
+                0710d067 c09d0961 5f928ea5 17bcdf49
+                ad75abd2 c8340b40 0e3b18e9 68b4ffef
+(node:7987) [DEP0164] DeprecationWarning: Implicit coercion to integer for exit code is deprecated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+snarkjs powersoftau prepare phase2 tmp.ptau sudoku.ptau
+rm tmp.ptau
+snarkjs groth16 setup sudoku.r1cs sudoku.ptau sudoku.pk
+[INFO]  snarkJS: Reading r1cs
+[INFO]  snarkJS: Reading tauG1
+[INFO]  snarkJS: Reading tauG2
+[INFO]  snarkJS: Reading alphatauG1
+[INFO]  snarkJS: Reading betatauG1
+[INFO]  snarkJS: Circuit hash:
+                dcc201d8 9589b4a2 a686886c 675a0b23
+                a6f83c8f 98056993 8330a561 4ffb448b
+                1b61878c 54935e1f bfb1b8a0 1c09838d
+                d4a77878 5e3be6b9 8531f951 9890aa4f
+(node:8018) [DEP0164] DeprecationWarning: Implicit coercion to integer for exit code is deprecated.   
+(Use `node --trace-deprecation ...` to show where the warning was created)
+snarkjs zkey export verificationkey sudoku.pk sudoku.vk
+snarkjs groth16 prove sudoku.pk sudoku.wtns sudoku.pf.json sudoku.inst.json
+snarkjs groth16 verify sudoku.vk sudoku.inst.json sudoku.pf.json
+[INFO]  snarkJS: OK!
+
+
+
