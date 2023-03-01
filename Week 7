@@ -1,0 +1,7 @@
+A rather active week:-
+
+- Lecture & - ZKP based on Error-Correcting Codes 
+- Lab was released - Writing and Proving Arithmetic Circuits 
+  - circom: a domain-specific language for describing arithmetic circuits, and
+  - snarkjs: a tool for generating and verifying zk-SNARKs for circuit satisfiability
+- RDI announced a hackathon - https://rdi.berkeley.edu/zkp-web3-hackathon/
