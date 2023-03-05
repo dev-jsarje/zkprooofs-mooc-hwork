@@ -1,0 +1,127 @@
+https://github.com/rdi-berkeley/zkp-mooc-lab
+
+Task 1: Implement a (simplified) floating-point addition circuit in circom
+Task 2: Generate a zk-SNARK proof using snarkjs
+
+Task 1: -
+
+
+Task 2: - 
+
+In this task, you will use snarkjs to generate a Groth16 proof that proves 7 x 17 x 19 = 2261, using the SmallOddFactorization circuit implemented in 
+circuits/example.circom. Follow the steps in snarkjs README until Step 24, and you will learn how to create a Groth16 proof and verify it.
+You can use the powersOfTau28_hez_final_08.ptau file in the root directory of this assignment to skip the first 9 steps.
+
+Deliverable: proof.json and verification_key.json generated while following the proof generation steps.
+
+ - Verify node version - node -v
+ - Verify snarkjs - snarkjs --help
+ - Copy the .ptau file and the example.circom file into a new directory
+ - Follow here - https://github.com/iden3/snarkjs i.e.e the snarkjs readme
+ - Using the .ptau file allows you to skip steps 1-9 of the snarks readme
+ - Compile the circuit - Run the command - circom example.circom --r1cs --wasm --sym
+ - This the output of the command:-
+ 
+ ---------------------
+ template instances: 3
+non-linear constraints: 23
+linear constraints: 0     
+public inputs: 1
+public outputs: 0
+private inputs: 3
+private outputs: 0
+wires: 24
+labels: 39
+Written successfully: ./example.r1cs
+Written successfully: ./example.sym 
+Written successfully: ./example_js/example.wasm
+Everything went okay, circom safe
+ -------------------
+ 
+ - View information about the circuit - Run this command - snarkjs r1cs info example.r1cs
+ 
+ --------------------------
+[INFO]  snarkJS: Curve: bn-128
+[INFO]  snarkJS: # of Wires: 24
+[INFO]  snarkJS: # of Constraints: 23
+[INFO]  snarkJS: # of Private Inputs: 3
+[INFO]  snarkJS: # of Public Inputs: 1
+[INFO]  snarkJS: # of Labels: 39
+[INFO]  snarkJS: # of Outputs: 0
+
+---------------------------------
+
+- Print the constraints - Run this command - snarkjs r1cs print example.r1cs example.sym
+
+---------------------------------------
+[INFO]  snarkJS: [ 21888242871839275222246405745257275088548364400416034343698204186575808495616main.factors[0] ] * [ main.factors[1] ] - [ 21888242871839275222246405745257275088548364400416034343698204186575808495616main.partialProducts[2] ] = 0
+[INFO]  snarkJS: [ 21888242871839275222246405745257275088548364400416034343698204186575808495616main.partialProducts[2] ] * [ main.factors[2] ] - [ 21888242871839275222246405745257275088548364400416034343698204186575808495616main.product ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[0].binaryDecomposition.bits[1] ] * [ main.smallOdd[0].binaryDecomposition.bits[1] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[0].binaryDecomposition.bits[2] ] * [ main.smallOdd[0].binaryDecomposition.bits[2] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[0].binaryDecomposition.bits[3] ] * [ main.smallOdd[0].binaryDecomposition.bits[3] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[0].binaryDecomposition.bits[4] ] * [ main.smallOdd[0].binaryDecomposition.bits[4] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[0].binaryDecomposition.bits[5] ] * [ main.smallOdd[0].binaryDecomposition.bits[5] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[0].binaryDecomposition.bits[6] ] * [ main.smallOdd[0].binaryDecomposition.bits[6] ] - [  ] = 0
+[INFO]  snarkJS: [ 217172409744030308845726057003724526269190803035377840753880619663681849917461 +171001897436244337673800044884822461629284096878250268310142220207623503872main.factors[0] +21546239076966786546898805655487630165289796206659533807077919746160561487873main.smallOdd[0].binaryDecomposition.bits[1] +21204235282094297871551205565717985242031228012903033270457635305745314480129main.smallOdd[0].binaryDecomposition.bits[2] +20520227692349320520856005386178695395514091625390032197217066424914820464641main.smallOdd[0].binaryDecomposition.bits[3] +19152212512859365819465605027100115702479818850364030050735928663253832433665main.smallOdd[0].binaryDecomposition.bits[4] +16416182153879456416684804308942956316411273300312025757773653139931856371713main.smallOdd[0].binaryDecomposition.bits[5] +10944121435919637611123202872628637544274182200208017171849102093287904247809main.smallOdd[0].binaryDecomposition.bits[6] ] * [ 1710018974362443376738000448848224616292840968782502683101422202076235038721 +21717240974403030884572605700372452626919080303537784075388061966368184991745main.factors[0] +342003794872488675347600089769644923258568193756500536620284440415247007744main.smallOdd[0].binaryDecomposition.bits[1] +684007589744977350695200179539289846517136387513001073240568880830494015488main.smallOdd[0].binaryDecomposition.bits[2] +1368015179489954701390400359078579693034272775026002146481137761660988030976main.smallOdd[0].binaryDecomposition.bits[3] +2736030358979909402780800718157159386068545550052004292962275523321976061952main.smallOdd[0].binaryDecomposition.bits[4] +5472060717959818805561601436314318772137091100104008585924551046643952123904main.smallOdd[0].binaryDecomposition.bits[5] +10944121435919637611123202872628637544274182200208017171849102093287904247808main.smallOdd[0].binaryDecomposition.bits[6] 
+] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[1].binaryDecomposition.bits[1] ] * [ main.smallOdd[1].binaryDecomposition.bits[1] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[1].binaryDecomposition.bits[2] ] * [ main.smallOdd[1].binaryDecomposition.bits[2] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[1].binaryDecomposition.bits[3] ] * [ main.smallOdd[1].binaryDecomposition.bits[3] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[1].binaryDecomposition.bits[4] ] * [ main.smallOdd[1].binaryDecomposition.bits[4] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[1].binaryDecomposition.bits[5] ] * [ main.smallOdd[1].binaryDecomposition.bits[5] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[1].binaryDecomposition.bits[6] ] * [ main.smallOdd[1].binaryDecomposition.bits[6] ] - [  ] = 0
+[INFO]  snarkJS: [ 217172409744030308845726057003724526269190803035377840753880619663681849917461 +171001897436244337673800044884822461629284096878250268310142220207623503872main.factors[1] +21546239076966786546898805655487630165289796206659533807077919746160561487873main.smallOdd[1].binaryDecomposition.bits[1] +21204235282094297871551205565717985242031228012903033270457635305745314480129main.smallOdd[1].binaryDecomposition.bits[2] +20520227692349320520856005386178695395514091625390032197217066424914820464641main.smallOdd[1].binaryDecomposition.bits[3] +19152212512859365819465605027100115702479818850364030050735928663253832433665main.smallOdd[1].binaryDecomposition.bits[4] +16416182153879456416684804308942956316411273300312025757773653139931856371713main.smallOdd[1].binaryDecomposition.bits[5] +10944121435919637611123202872628637544274182200208017171849102093287904247809main.smallOdd[1].binaryDecomposition.bits[6] ] * [ 1710018974362443376738000448848224616292840968782502683101422202076235038721 +21717240974403030884572605700372452626919080303537784075388061966368184991745main.factors[1] +342003794872488675347600089769644923258568193756500536620284440415247007744main.smallOdd[1].binaryDecomposition.bits[1] +684007589744977350695200179539289846517136387513001073240568880830494015488main.smallOdd[1].binaryDecomposition.bits[2] +1368015179489954701390400359078579693034272775026002146481137761660988030976main.smallOdd[1].binaryDecomposition.bits[3] +2736030358979909402780800718157159386068545550052004292962275523321976061952main.smallOdd[1].binaryDecomposition.bits[4] +5472060717959818805561601436314318772137091100104008585924551046643952123904main.smallOdd[1].binaryDecomposition.bits[5] +10944121435919637611123202872628637544274182200208017171849102093287904247808main.smallOdd[1].binaryDecomposition.bits[6] 
+] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[2].binaryDecomposition.bits[1] ] * [ main.smallOdd[2].binaryDecomposition.bits[1] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[2].binaryDecomposition.bits[2] ] * [ main.smallOdd[2].binaryDecomposition.bits[2] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[2].binaryDecomposition.bits[3] ] * [ main.smallOdd[2].binaryDecomposition.bits[3] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[2].binaryDecomposition.bits[4] ] * [ main.smallOdd[2].binaryDecomposition.bits[4] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[2].binaryDecomposition.bits[5] ] * [ main.smallOdd[2].binaryDecomposition.bits[5] ] - [  ] = 0
+[INFO]  snarkJS: [ 1 +21888242871839275222246405745257275088548364400416034343698204186575808495616main.smallOdd[2].binaryDecomposition.bits[6] ] * [ main.smallOdd[2].binaryDecomposition.bits[6] ] - [  ] = 0
+[INFO]  snarkJS: [ 217172409744030308845726057003724526269190803035377840753880619663681849917461 +171001897436244337673800044884822461629284096878250268310142220207623503872main.factors[2] +21546239076966786546898805655487630165289796206659533807077919746160561487873main.smallOdd[2].binaryDecomposition.bits[1] +21204235282094297871551205565717985242031228012903033270457635305745314480129main.smallOdd[2].binaryDecomposition.bits[2] +20520227692349320520856005386178695395514091625390032197217066424914820464641main.smallOdd[2].binaryDecomposition.bits[3] +19152212512859365819465605027100115702479818850364030050735928663253832433665main.smallOdd[2].binaryDecomposition.bits[4] +16416182153879456416684804308942956316411273300312025757773653139931856371713main.smallOdd[2].binaryDecomposition.bits[5] +10944121435919637611123202872628637544274182200208017171849102093287904247809main.smallOdd[2].binaryDecomposition.bits[6] ] * [ 1710018974362443376738000448848224616292840968782502683101422202076235038721 +21717240974403030884572605700372452626919080303537784075388061966368184991745main.factors[2] +342003794872488675347600089769644923258568193756500536620284440415247007744main.smallOdd[2].binaryDecomposition.bits[1] +684007589744977350695200179539289846517136387513001073240568880830494015488main.smallOdd[2].binaryDecomposition.bits[2] +1368015179489954701390400359078579693034272775026002146481137761660988030976main.smallOdd[2].binaryDecomposition.bits[3] +2736030358979909402780800718157159386068545550052004292962275523321976061952main.smallOdd[2].binaryDecomposition.bits[4] +5472060717959818805561601436314318772137091100104008585924551046643952123904main.smallOdd[2].binaryDecomposition.bits[5] +10944121435919637611123202872628637544274182200208017171849102093287904247808main.smallOdd[2].binaryDecomposition.bits[6] 
+] - [  ] = 0
+ 
+ --------------------------------------------
+ 
+ - Export r1cs to json - Run the commands
+ - Command#1 - snarkjs r1cs export json example.r1cs example.r1cs.json
+ 
+ -----------------
+ snarkJS: undefined: Loading constraints: 0/23
+[INFO]  snarkJS: undefined: Loading map: 0/24
+
+--------------------------------------
+ - COmmand#2 - cat circuit.r1cs.json
+ 
+------------------------
+Output is a file to large to post but here is a snippet:-
+
+cat example.r1cs.json
+{
+ "n8": 32,
+ "prime": "21888242871839275222246405745257275088548364400416034343698204186575808495617",
+ "nVars": 24,
+ "nOutputs": 0,
+ "nPubInputs": 1,
+ "nPrvInputs": 3,
+ "nLabels": 39,
+ "nConstraints": 23,
+ "useCustomGates": false,
+ "constraints": [
+  [
+   {
+    "2": "21888242871839275222246405745257275088548364400416034343698204186575808495616"
+
+ ------------------------------------------
+ 
+ Your directory should look like this:-
+ 
+drwxrwxrwx 1 user user   4096 Mar  5 14:36 .
+drwxrwxrwx 1 user user   4096 Mar  5 14:05 ..
+-rwxrwxrwx 1 user user   3086 Mar  5 14:14 example.circom
+-rwxrwxrwx 1 user user   4468 Mar  5 14:15 example.r1cs
+-rwxrwxrwx 1 user user   8203 Mar  5 14:36 example.r1cs.json
+-rwxrwxrwx 1 user user   1703 Mar  5 14:15 example.sym
+drwxrwxrwx 1 user user   4096 Mar  5 14:15 example_js
+-rwxrwxrwx 1 user user 378008 Mar  5 14:02 powersOfTau28_hez_final_08.ptau
+ 
