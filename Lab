@@ -5,6 +5,18 @@ Task 2: Generate a zk-SNARK proof using snarkjs
 
 Task 1: -
 
+In this task, you'll be implementing a (simplified) floating-point addition circuit in circom. This task does not assume any familiarity with floating-point arithmetic and you are not required to understand floating-point addition to complete it.
+Before you begin, please go through the circom documentation and circuits/example.circom.
+
+The src/ directory has a python program float_add.py that implements the floating-point addition logic. Use this file as a reference point for the set of instructions you have to translate into a circuit. We have added minimal comments in float_add.py as they can be distracting. For curious students, we've added another file src/float_add_with_comments.py that implements the same logic and has extensive comments explaining the floating-point representation and the addition algorithm.
+
+The circuits/ directory has a file float_add.circom that contains the skeleton of the circuit that you have to complete. We've broken down the circuit into several templates such that each function in float_add.py has a corresponding template in float_add.circom. Each template has comments explaining its inputs and outputs, as well as any conditions that have to be enforced by that template. You have to implement the empty templates one-by-one in the order they appear in the file. You can independently test each template by running mocha test/[template_name_in_snake_case].js. There's partial credit for each template. Some useful templates are already implemented in float_add.circom for you to use in your circuit and to serve as examples.
+
+circom will compile your circuits to a Rank-1 Constraint System (R1CS) instance (see Lecture 3 for definition), the primary efficiency metric for which is the number of constraints (fewer is better). You can find the number of constraints in your implementation using the testing suite. The suite also tells you the number of constraints expected from an optimized circuit implementation. There's bonus points if the number of constraints in your implementation are close to the optimized constraints.
+
+Deliverable: completed float_add.circom
+
+- I was uncusseesful in completing this task
 
 Task 2: - 
 
