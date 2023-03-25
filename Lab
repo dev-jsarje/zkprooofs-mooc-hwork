@@ -1,5 +1,6 @@
 https://github.com/rdi-berkeley/zkp-mooc-lab
 
+After the deadline a walkthrough was posted - finally understood the assignment
 Task 1: Implement a (simplified) floating-point addition circuit in circom
 Task 2: Generate a zk-SNARK proof using snarkjs
 
